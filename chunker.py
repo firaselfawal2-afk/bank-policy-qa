@@ -16,6 +16,3 @@ def make_chunks():
     return chunks
 
 
-chunks = make_chunks()
-print(len(chunks), "chunks")
-print(chunks[10])
