@@ -27,8 +27,14 @@ Context:
 
 Question: {question}"""
 
-    response = gemini.models.generate_content(model="gemini-3.1-flash-lite", contents=prompt)
-    return response.text
+    for model_name in ["gemini-3.1-flash-lite", "gemini-3-flash-preview"]:
+        try:
+            response = gemini.models.generate_content(model=model_name, contents=prompt)
+            return response.text
+        except Exception as error:
+            print(f"{model_name} failed: {error}")
+
+    return "Sorry, the AI service is busy right now. Please try again later."
 
 
-print(ask("What is the price of an iPhone?"))
+
